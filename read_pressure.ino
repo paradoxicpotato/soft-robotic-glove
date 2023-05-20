@@ -37,9 +37,7 @@ void read_pressure(){
   // Serial.print("\tAnalog1: "); Serial.print(PWM1); Serial.print('\t'); Serial.println(Pressure1);
   // Serial.print("\tAnalog2: "); Serial.print(PWM2); Serial.print('\t'); Serial.println(Pressure2);
   // Serial.print("\tAnalog3: "); Serial.print(PWM3); Serial.print('\t'); Serial.println(Pressure3);
-  Serial.print("\tAnalog4: "); Serial.print(PWM4); Serial.print('\t'); Serial.println(Pressure4);
+  //Serial.print("\tAnalog4: "); Serial.print(PWM4); Serial.print('\t'); Serial.println(Pressure4);
   // Serial.print("\tAnalog5: "); Serial.print(dPressOutRef); Serial.print('\t'); Serial.println(PressureRef);
-
   //Serial.println(Pressure0); 
-  delay(50);
 }

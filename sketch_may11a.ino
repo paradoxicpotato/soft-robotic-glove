@@ -51,6 +51,10 @@ PID pid2(&Pressure2, &PWM2, &Setpoint2, Kp, Ki, Kd, DIRECT);
 PID pid3(&Pressure3, &PWM3, &Setpoint3, Kp, Ki, Kd, DIRECT);
 PID pid4(&Pressure4, &PWM4, &Setpoint4, Kp, Ki, Kd, DIRECT);
 
+int mode = 2;
+int press_state = 1; // 1 Pressurise 0 Depressurise
+unsigned long previousMillis = 0;
+
 void setup() 
 {
   Serial.begin(115200);
@@ -90,19 +94,17 @@ void setup()
   pid4.SetOutputLimits(200, 255);
 }
  
-void loop() 
-{
-
-  read_pressure();
-
-  digitalWrite(SolValve7, HIGH);
-  digitalWrite(SolValve2, HIGH);
-
+void loop() {
+    
+  // Compute PID values
   pid0.Compute();
   pid1.Compute();
   pid2.Compute();
   pid3.Compute();
   pid4.Compute();
 
+  //mode_select();
+  read_pressure();
   motor_control();
+
 }

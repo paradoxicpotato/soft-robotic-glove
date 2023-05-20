@@ -1,7 +1,13 @@
 void motor_control(){
-  motor1.run(FORWARD);
-  motor1.setSpeed(PWM4);
 
-  //motor2.run(FORWARD);
-  //motor2.setSpeed(255);
+  motor1.run(FORWARD);
+  switch(mode){
+    case 1:
+      motor1.setSpeed(PWM4);
+      read_pressure();
+      full_hand();
+
+    case 2:
+      sequential();
+  }
 }
