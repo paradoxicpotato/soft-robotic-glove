@@ -1,44 +1,48 @@
 void full_hand(){
-  unsigned long currentMillis = millis();
+  if(angleR[3] < 0){
+    digitalWrite(SolValve[6], LOW);
+    digitalWrite(SolValve[7], HIGH);
 
-  const long interval = 10000;
+    digitalWrite(SolValve[5], HIGH);
+    analogWrite(enA, 0);
+    analogWrite(enB, PWM[0]);
+    }
 
-  if(currentMillis - previousMillis >= interval){
-    previousMillis = currentMillis;
-    Serial.println(currentMillis);
-    Serial.println(press_state);
-      if(press_state == 1){
-        press_state = 0;
-      }
+    else{
+      if (Setpoint[0] - Pressure[0] <= -10){
 
+        digitalWrite(SolValve[6], LOW);
+        digitalWrite(SolValve[7], HIGH);
+
+        digitalWrite(SolValve[1], HIGH);
+        digitalWrite(SolValve[2], HIGH);
+        digitalWrite(SolValve[3], HIGH);
+        digitalWrite(SolValve[4], HIGH);
+        digitalWrite(SolValve[5], HIGH);
+        analogWrite(enA, 0);
+        analogWrite(enB, PWM[0]);
+    }
       else{
-        press_state = 1;
+
+        digitalWrite(SolValve[6], HIGH);
+        digitalWrite(SolValve[7], LOW);
+        
+        digitalWrite(SolValve[1], HIGH);
+        digitalWrite(SolValve[2], HIGH);
+        digitalWrite(SolValve[3], HIGH);
+        digitalWrite(SolValve[4], HIGH);
+        digitalWrite(SolValve[5], HIGH);
+        analogWrite(enA, PWM[0]);
+        analogWrite(enB, 0);
       }
+    }
 
+  if(PWM[0] < 20){
+
+    digitalWrite(SolValve[1], HIGH);
+    digitalWrite(SolValve[2], HIGH);
+    digitalWrite(SolValve[3], HIGH);
+    digitalWrite(SolValve[4], HIGH);
+    digitalWrite(SolValve[5], LOW);
   }
-
-  if(press_state == 1){
-    
-        digitalWrite(SolValve8, LOW);
-        digitalWrite(SolValve7, HIGH);
-
-        digitalWrite(SolValve2, HIGH);
-        digitalWrite(SolValve3, HIGH);
-        digitalWrite(SolValve4, HIGH);
-        digitalWrite(SolValve5, HIGH);
-        digitalWrite(SolValve6, HIGH);
-  }
-
-  else{
-      digitalWrite(SolValve8, HIGH);
-      digitalWrite(SolValve7, LOW);
-
-      digitalWrite(SolValve1, HIGH);
-      digitalWrite(SolValve2, HIGH);
-      digitalWrite(SolValve3, HIGH);
-      digitalWrite(SolValve4, HIGH);
-      digitalWrite(SolValve5, HIGH);
-      digitalWrite(SolValve6, HIGH);
-  }
-
 }
